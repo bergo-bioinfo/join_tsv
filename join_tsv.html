@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Yec'han Laizet">
+    <title>Join tsv</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.min.js"></script>
+    <script src="join_tsv.js"></script>
+
+    <link href="join_tsv.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <h1>
+        Joindre les lignes de deux tableaux côte à côte par comparaison de colonne(s)
+    </h1>
+    <p>Developpement et support : Y. Laizet  &nbsp;&nbsp;&nbsp;<input type="button" value="Données de démo" onClick="loadDemo();"> <input type="button" onClick="location.reload(true);" value="Vider la page" /></p>
+    <div id="half1">
+        <label>Tableau 1</label> <input type="file" name="xlsx1" id="xlsx1" accept=".xlsx" /> <select name="sheets1" id="sheets1" onChange="updateCsv(this);"></select> <input type="button" onClick="clearTable('content1');" value="X" /><br />
+        <textarea id="content1" placeholder="Coller des cellules depuis votre tableur ou charger depuis un fichier xlsx ci-dessus" required title="Copier les cellules depuis votre tableur et les coller ici" onChange="clearContentOoutpu.log();"></textarea>
+        <br />
+        <br />
+        <label>Colonne(s) 1</label> <input type="button" onClick="clearTable('cols1');" value="X" />
+        <br />
+        <input id="cols1" placeholder="Ex: 1,2" pattern="[a-zA-Z0-9]+(,[a-zA-Z0-9]+)*" required value="" style="text-transform:uppercase" title="Colonne(s) (numéro ou lettres) à utiliser comme clef pour associer les lignes des deux tableaux.
+Les numéros doivent être séparés par des virgules.
+Ex: 1,B,6" />
+    </div>
+    <div id="half2">
+        <label>Tableau 2</label> <input type="file" name="xlsx2" id="xlsx2" accept=".xlsx" /> <select name="sheets2" id="sheets2" onChange="updateCsv(this);"></select> <input type="button" onClick="clearTable('content2');" value="X" /><br />
+        <textarea id="content2" placeholder="Coller des cellules depuis votre tableur ou charger depuis un fichier xlsx ci-dessus" required title="Copier les cellules depuis votre tableur et les coller ici"></textarea>
+        <br />
+        <br />
+        <label>Colonne(s) 2</label> <input type="button" onClick="clearTable('cols2');" value="X" />
+        <br />
+        <input id="cols2" placeholder="Ex: C,1" pattern="[a-zA-Z0-9]+(,[a-zA-Z0-9]+)*" required value="" style="text-transform:uppercase" title="Colonne(s) (numéro ou lettres) à utiliser comme clef pour associer les lignes des deux tableaux.
+Les numéros doivent être séparés par des virgules.
+Ex: 1,B,6" />
+    </div>
+    <h2 title="Cliquer dans la zone de résultat pour recalculer">Résultat</h2> <input type="button" onClick="ddl_tsv();" value="Télécharger TSV" />
+    <div id="output">
+        <textarea id="contentOutput" placeholder="            *** Cliquer ici pour obtenir le résultat ou recalculer ***"
+            onClick="mergeTables();selectResult();" title="Cliquer ici pour obtenir le résultat ou recalculer. Sélectionner le contenu, le copier puis le coller dans votre tableur."></textarea>
+    </div>
+    <script type="text/javascript">
+        document.getElementById("xlsx1").addEventListener('change', handleFile, false);
+        document.getElementById("xlsx2").addEventListener('change', handleFile, false);
+    </script>
+</body>
+</html>
