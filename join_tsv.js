@@ -137,6 +137,19 @@ function ddl_tsv() {
     saveAs(new Blob([output], {type:'application/csv'}), 'test.tsv');
 }
 
+function ddl_xlsx() {
+    var output = document.getElementById('contentOutput').value;
+    if (output === "") {
+        mergeTables();
+    }
+    output = document.getElementById('contentOutput').value;
+    data_as_json = Papa.parse(output, {delimiter: fieldSep, skipEmptyLines: true, header: true})
+    const worksheet = XLSX.utils.json_to_sheet(data_as_json.data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "join");
+    XLSX.writeFile(workbook, "Joined_tables.xlsx", { compression: true });
+}
+
 function to_csv(workbook, sheet) {
     workbook.SheetNames.forEach(function(sheetName) {
         var x;
