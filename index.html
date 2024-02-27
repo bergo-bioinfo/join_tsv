@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.1/papaparse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="join_tsv.js"></script>
 
     <link href="join_tsv.css" rel="stylesheet" type="text/css" />
@@ -41,7 +41,7 @@ Ex: 1,B,6" />
 Les numéros doivent être séparés par des virgules.
 Ex: 1,B,6" />
     </div>
-    <h2 title="Cliquer dans la zone de résultat pour recalculer">Résultat</h2> <input type="button" onClick="ddl_tsv();" value="Télécharger TSV" />
+    <h2 title="Cliquer dans la zone de résultat pour recalculer">Résultat</h2> <input type="button" onClick="ddl_tsv();" value="Télécharger TSV" /> <input type="button" onClick="ddl_xlsx();" value="Télécharger XLSX" />
     <div id="output">
         <textarea id="contentOutput" placeholder="            *** Cliquer ici pour obtenir le résultat ou recalculer ***"
             onClick="mergeTables();selectResult();" title="Cliquer ici pour obtenir le résultat ou recalculer. Sélectionner le contenu, le copier puis le coller dans votre tableur."></textarea>

@@ -1,11 +1,18 @@
 # join_tsv
+
 Associe les lignes de deux tableaux en utilisant une clef composite basées des colonnes pour identifier les lignes entre les deux tableaux.
 
 # Installation
 
+## Locale
+
 Fichier HTML autonome. Nécessite une connexion internet pour les librairies utilisées.
 
 Après téléchargement du dépot, il suffit d'ouvrir le fichier `join_tsv.html` dans votre navigateur internet.
+
+## Utilisation en ligne
+
+L'outil peut être utilisé en ligne directement : https://bergo-bioinfo.github.io/join_tsv/
 
 # Usage
 
