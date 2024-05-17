@@ -93,6 +93,20 @@ var getMap = function(side) {
     return sideMap;
 };
 
+var rename_duplicated_colnames = function(dataJ) {
+    var counts = {};
+    for (var i = 0; i < dataJ.data[0].length; i++) {
+        var col = dataJ.data[0][i];
+        if (counts[col] !== undefined && counts[col] >= 1) {
+            counts[col]++;
+            dataJ.data[0][i] = dataJ.data[0][i] + "_" + counts[col];
+        } else {
+            counts[col] = 1;
+        }
+    }
+    return dataJ
+}
+
 var mergeTables = function() {
     if (paramsOk()) {
         var mapped = [];
@@ -118,6 +132,7 @@ var mergeTables = function() {
                 dataJ.data.push(newLine);
             }
         }
+        rename_duplicated_colnames(dataJ);
         document.getElementById("contentOutput").value = Papa.unparse(dataJ, parserConfig);
     } else {
         clearContentOuput();
