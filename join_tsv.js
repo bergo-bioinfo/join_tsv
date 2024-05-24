@@ -149,7 +149,7 @@ function ddl_tsv() {
         mergeTables();
     }
     output = document.getElementById('contentOutput').value;
-    saveAs(new Blob([output], {type:'application/csv'}), 'test.tsv');
+    saveAs(new Blob([output], {type:'application/csv'}), 'Joined_tables.tsv');
 }
 
 function ddl_xlsx() {
